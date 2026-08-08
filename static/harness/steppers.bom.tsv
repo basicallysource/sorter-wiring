@@ -1,5 +1,11 @@
-Id	Description	Qty	Unit	Designators
-1	Cable, 4 x 24 AWG	80	in	CH, S
-2	Connector, Bare tinned leads, labeled 1-4, 4 pins	1		CH_LEADS
-3	Connector, JST PH 4-pin (PHR-4), female, 4 pins	2		BOARD_CH, BOARD_S
-4	Connector, XH2.54 4-pin inline male (clone), male, 4 pins	1		MOTOR_LEAD
+Id	Description	Qty	Unit	Designators	Manufacturer	MPN
+1	Cable, 4 x 24 AWG	40	in	CH		
+2	Connector, Bare tinned leads, labeled 1-4, 4 pins	1		CH_LEADS		
+3	Connector, JST PH 4-pin housing, 2.0mm pitch, 4 pins	2		BOARD_CH, BOARD_S	JST	PHR-4
+4	Connector, JST PH 6-pin housing, 2.0mm pitch, 6 pins	1		MOTOR_LEAD	JST	PHR-6
+5	PVC Sleeving	1		S		
+6	Terminal - SPH-002T-P0.5S	12		BOARD_CH, BOARD_S, MOTOR_LEAD	JST	SPH-002T-P0.5S
+7	Wire, 4 wire bundle, 24 AWG, BK	1	m	S		
+8	Wire, 4 wire bundle, 24 AWG, BU	1	m	S		
+9	Wire, 4 wire bundle, 24 AWG, GN	1	m	S		
+10	Wire, 4 wire bundle, 24 AWG, RD	1	m	S		

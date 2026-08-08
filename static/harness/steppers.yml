@@ -1,25 +1,53 @@
 metadata:
   title: Sorter V2 - stepper cables
   description: >
-    Channel stepper crossover cable (x4) and chute stepper cable.
+    Channel stepper cable S (x4) and chute stepper cable CH.
+    The channel cable follows Jon's Stepper_Harness spec.
     Values marked GUESS are guesses, not measurements.
 
 connectors:
   BOARD_S:
-    type: JST PH 4-pin (PHR-4)
-    subtype: female
+    type: JST PH 4-pin housing
+    subtype: 2.0mm pitch
+    pincount: 4
     pinlabels: [A2, A1, B1, B2]
-    notes: basically board v1.3 J23/J27/J31/J35 - one cable per jack, x4 identical
+    manufacturer: JST
+    mpn: PHR-4
+    notes: "basically board v1.3 J23/J27/J31/J35\nOne cable per jack, x4 identical"
+    additional_components:
+      - type: Terminal - SPH-002T-P0.5S
+        qty: 1
+        qty_multiplier: populated
+        manufacturer: JST
+        mpn: SPH-002T-P0.5S
   MOTOR_LEAD:
-    type: XH2.54 4-pin inline male (clone)
-    subtype: male
-    pinlabels: [A2, B1, A1, B2]
-    notes: mates the StepperOnline shipped motor lead, which interleaves the coils
+    type: JST PH 6-pin housing
+    subtype: 2.0mm pitch
+    pincount: 6
+    pinlabels: [A2, C1, B1, A1, C2, B2]
+    manufacturer: JST
+    mpn: PHR-6
+    notes: "mates the NEMA 17 steppers with a 6 pin JST connection.\nCheck coils before connecting. (Pins 2 and 5 unconnected)"
+    additional_components:
+      - type: Terminal - SPH-002T-P0.5S
+        qty: 1
+        qty_multiplier: populated
+        manufacturer: JST
+        mpn: SPH-002T-P0.5S
   BOARD_CH:
-    type: JST PH 4-pin (PHR-4)
-    subtype: female
+    type: JST PH 4-pin housing
+    subtype: 2.0mm pitch
+    pincount: 4
     pinlabels: [A2, A1, B1, B2]
+    manufacturer: JST
+    mpn: PHR-4
     notes: basically board v1.3 J39
+    additional_components:
+      - type: Terminal - SPH-002T-P0.5S
+        qty: 1
+        qty_multiplier: populated
+        manufacturer: JST
+        mpn: SPH-002T-P0.5S
   CH_LEADS:
     type: Bare tinned leads, labeled 1-4
     pinlabels: [A2, A1, B1, B2]
@@ -27,23 +55,28 @@ connectors:
 
 cables:
   S:
-    category: cable
+    category: bundle
+    type: 4 wire bundle
     gauge: 24 AWG
-    length: 40 in
-    colors: [BK, RD, GN, BU]
-    notes: S1-S4, qty 4. Gauge = GUESS (JST-PH contact limit). NOT straight-through, see crossover.
+    length: 1 m
+    wirecount: 4
+    colors: [BU, GN, RD, BK]
+    notes: S1-S4, qty 4. NOT straight-through, see crossover.
+    additional_components:
+      - type: PVC Sleeving
+        qty: 1
   CH:
     category: cable
     gauge: 24 AWG
     length: 40 in
     colors: [BK, GN, RD, BU]
-    notes: qty 1. Gauge = GUESS. Length = GUESS (copied from channel cables). Straight-through.
+    notes: qty 1. Gauge = GUESS. Length = GUESS. Straight-through.
 
 connections:
   -
     - BOARD_S: [1-4]
     - S: [1-4]
-    - MOTOR_LEAD: [1, 3, 2, 4]
+    - MOTOR_LEAD: [1, 4, 3, 6]
   -
     - BOARD_CH: [1-4]
     - CH: [1-4]

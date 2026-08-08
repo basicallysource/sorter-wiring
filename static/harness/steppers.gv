@@ -13,8 +13,13 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">JST PH 4-pin (PHR-4)</td>
-   <td balign="left">female</td>
+   <td balign="left">JST: PHR-4</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">JST PH 4-pin housing</td>
+   <td balign="left">2.0mm pitch</td>
    <td balign="left">4-pin</td>
   </tr></table>
  </td></tr>
@@ -40,7 +45,17 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">basically board v1.3 J23/J27/J31/J35 - one cable per jack, x4 identical</td>
+   <td balign="left">Additional components</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td align="left" balign="left">4 x #6 (Terminal - SPH-002T-P0.5S)</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">basically board v1.3 J23/J27/J31/J35<br />One cable per jack, x4 identical</td>
   </tr></table>
  </td></tr>
 </table>
@@ -54,9 +69,14 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">XH2.54 4-pin inline male (clone)</td>
-   <td balign="left">male</td>
-   <td balign="left">4-pin</td>
+   <td balign="left">JST: PHR-6</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">JST PH 6-pin housing</td>
+   <td balign="left">2.0mm pitch</td>
+   <td balign="left">6-pin</td>
   </tr></table>
  </td></tr>
  <tr><td>
@@ -67,21 +87,39 @@ graph {
    </tr>
    <tr>
     <td port="p2l">2</td>
-    <td>B1</td>
+    <td>C1</td>
    </tr>
    <tr>
     <td port="p3l">3</td>
-    <td>A1</td>
+    <td>B1</td>
    </tr>
    <tr>
     <td port="p4l">4</td>
+    <td>A1</td>
+   </tr>
+   <tr>
+    <td port="p5l">5</td>
+    <td>C2</td>
+   </tr>
+   <tr>
+    <td port="p6l">6</td>
     <td>B2</td>
    </tr>
   </table>
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">mates the StepperOnline shipped motor lead, which interleaves the coils</td>
+   <td balign="left">Additional components</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td align="left" balign="left">4 x #6 (Terminal - SPH-002T-P0.5S)</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">mates the NEMA 17 steppers with a 6 pin JST connection.<br />Check coils before connecting. (Pins 2 and 5 unconnected)</td>
   </tr></table>
  </td></tr>
 </table>
@@ -95,8 +133,13 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">JST PH 4-pin (PHR-4)</td>
-   <td balign="left">female</td>
+   <td balign="left">JST: PHR-4</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">JST PH 4-pin housing</td>
+   <td balign="left">2.0mm pitch</td>
    <td balign="left">4-pin</td>
   </tr></table>
  </td></tr>
@@ -119,6 +162,16 @@ graph {
     <td port="p4r">4</td>
    </tr>
   </table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">Additional components</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td align="left" balign="left">4 x #6 (Terminal - SPH-002T-P0.5S)</td>
+  </tr></table>
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
@@ -167,18 +220,18 @@ graph {
  </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#000000:#000000"]
+	edge [color="#000000:#0066ff:#000000"]
 	BOARD_S:p1r:e -- S:w1:w
 	S:w1:e -- MOTOR_LEAD:p1l:w
-	edge [color="#000000:#ff0000:#000000"]
-	BOARD_S:p2r:e -- S:w2:w
-	S:w2:e -- MOTOR_LEAD:p3l:w
 	edge [color="#000000:#00ff00:#000000"]
+	BOARD_S:p2r:e -- S:w2:w
+	S:w2:e -- MOTOR_LEAD:p4l:w
+	edge [color="#000000:#ff0000:#000000"]
 	BOARD_S:p3r:e -- S:w3:w
-	S:w3:e -- MOTOR_LEAD:p2l:w
-	edge [color="#000000:#0066ff:#000000"]
+	S:w3:e -- MOTOR_LEAD:p3l:w
+	edge [color="#000000:#000000:#000000"]
 	BOARD_S:p4r:e -- S:w4:w
-	S:w4:e -- MOTOR_LEAD:p4l:w
+	S:w4:e -- MOTOR_LEAD:p6l:w
 	S [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
@@ -188,9 +241,10 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">4 wire bundle</td>
    <td balign="left">4x</td>
    <td balign="left">24 AWG</td>
-   <td balign="left">40.0 in</td>
+   <td balign="left">1.0 m</td>
   </tr></table>
  </td></tr>
  <tr><td>
@@ -199,7 +253,7 @@ graph {
    <tr>
     <td>BOARD_S:1:A2</td>
     <td>
-     1:BK
+     BU
     </td>
     <td>MOTOR_LEAD:1:A2</td>
    </tr>
@@ -207,7 +261,7 @@ graph {
     <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
      <table cellspacing="0" cellborder="0" border="0">
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#0066ff" border="0"></td></tr>
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
      </table>
     </td>
@@ -215,28 +269,12 @@ graph {
    <tr>
     <td>BOARD_S:2:A1</td>
     <td>
-     2:RD
+     GN
     </td>
-    <td>MOTOR_LEAD:3:A1</td>
+    <td>MOTOR_LEAD:4:A1</td>
    </tr>
    <tr>
     <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ff0000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr>
-    <td>BOARD_S:3:B1</td>
-    <td>
-     3:GN
-    </td>
-    <td>MOTOR_LEAD:2:B1</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w3" height="6">
      <table cellspacing="0" cellborder="0" border="0">
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#00ff00" border="0"></td></tr>
@@ -245,17 +283,33 @@ graph {
     </td>
    </tr>
    <tr>
+    <td>BOARD_S:3:B1</td>
+    <td>
+     RD
+    </td>
+    <td>MOTOR_LEAD:3:B1</td>
+   </tr>
+   <tr>
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w3" height="6">
+     <table cellspacing="0" cellborder="0" border="0">
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ff0000" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+     </table>
+    </td>
+   </tr>
+   <tr>
     <td>BOARD_S:4:B2</td>
     <td>
-     4:BU
+     BK
     </td>
-    <td>MOTOR_LEAD:4:B2</td>
+    <td>MOTOR_LEAD:6:B2</td>
    </tr>
    <tr>
     <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w4" height="6">
      <table cellspacing="0" cellborder="0" border="0">
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#0066ff" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
      </table>
     </td>
@@ -265,11 +319,21 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">S1-S4, qty 4. Gauge = GUESS (JST-PH contact limit). NOT straight-through, see crossover.</td>
+   <td balign="left">Additional components</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td align="left" balign="left">1 x #5 (PVC Sleeving)</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">S1-S4, qty 4. NOT straight-through, see crossover.</td>
   </tr></table>
  </td></tr>
 </table>
-> fillcolor="#FFFFFF" shape=box style=filled]
+> fillcolor="#FFFFFF" shape=box style="filled,dashed"]
 	edge [color="#000000:#000000:#000000"]
 	BOARD_CH:p1r:e -- CH:w1:w
 	CH:w1:e -- CH_LEADS:p1l:w
@@ -368,7 +432,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">qty 1. Gauge = GUESS. Length = GUESS (copied from channel cables). Straight-through.</td>
+   <td balign="left">qty 1. Gauge = GUESS. Length = GUESS. Straight-through.</td>
   </tr></table>
  </td></tr>
 </table>
