@@ -32,7 +32,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">6 pigtails land on the same output screws</td>
+   <td balign="left">6 pigtails land on the same output screws (CI smoke test)</td>
   </tr></table>
  </td></tr>
 </table>
