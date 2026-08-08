@@ -9,7 +9,7 @@ connectors:
     type: LRS-350-24 output, screw terminals
     subtype: fork terminals
     pinlabels: [+24V, GND (-V)]
-    notes: 6 pigtails land on the same output screws
+    notes: 6 pigtails land on the same output screws (CI smoke test)
   J1: &jack
     type: DC jack 5.5x2.1 female, panel-mount
     pinlabels: [+24V (tip), GND (sleeve)]
