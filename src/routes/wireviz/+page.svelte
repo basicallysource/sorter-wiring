@@ -48,7 +48,7 @@
 </ul>
 
 <h2>2 &nbsp; Drawings</h2>
-<p class="meta">Generated with <a href="https://github.com/wireviz/WireViz">WireViz</a> from the YAML in <code>wireviz/</code>. Re-render: <code>wireviz wireviz/*.yml -f ghpst -o static/harness</code>, then <code>dot -Tpdf</code> on the <code>.gv</code> for PDFs. HTML = drawing + BOM + cut list in one file.</p>
+<p class="meta">Generated with <a href="https://github.com/wireviz/WireViz">WireViz</a> from the YAML in <code>wireviz/</code>. Everything on this page is derived from those three files: edit the YAML, and CI re-renders the drawings, BOMs, PDFs and the supplier zip and commits them back to the branch. Nothing here is edited by hand. To re-render locally, <code>./scripts/build-harness.sh</code>. HTML = drawing + BOM + cut list in one file.</p>
 
 {#each drawings as d}
   <h3>{d.title}</h3>

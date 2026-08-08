@@ -1,0 +1,92 @@
+name: Harness drawings
+
+# Regenerates static/harness/ from the WireViz sources whenever they change,
+# and commits the result back to the branch. The point is that a PR editing
+# wireviz/power.yml is a complete change on its own: the drawing, the BOM,
+# the PDF and the supplier zip catch up here, so nobody needs WireViz and
+# graphviz installed to contribute one, and the Vercel preview shows the real
+# rendered drawing rather than the previous one.
+#
+# static/harness/** is in the path filters on purpose. Those files are
+# derived, so a hand-edit to one is a mistake by definition, and including
+# them here is what turns it back. This cannot loop: a push made with
+# GITHUB_TOKEN does not start another workflow run, and a run over an
+# already-current tree produces no commit anyway.
+#
+# scripts/build-harness.sh is the whole build and is meant to be run locally
+# too. Everything about reproducibility lives in its comments, not here.
+
+on:
+  pull_request:
+    paths:
+      - 'wireviz/**'
+      - 'static/harness/**'
+      - 'scripts/build-harness.sh'
+      - '.github/workflows/harness.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'wireviz/**'
+      - 'static/harness/**'
+      - 'scripts/build-harness.sh'
+      - '.github/workflows/harness.yml'
+  workflow_dispatch:
+
+# Nothing here reads a secret and nothing needs any other scope.
+permissions:
+  contents: write
+
+concurrency:
+  group: harness-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # On a pull_request the default checkout is the merge commit, which
+          # is not a branch and cannot be pushed to. Take the head branch.
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Pinned: WireViz stamps its own version into every .gv and .html, so a
+      # bump rewrites all of them at once. Do that deliberately, not by drift.
+      - run: pip install wireviz==0.4.1
+
+      - run: sudo apt-get update && sudo apt-get install -y graphviz
+
+      - run: ./scripts/build-harness.sh
+
+      - id: changed
+        run: |
+          if git diff --quiet -- static/harness; then
+            echo "dirty=false" >> "$GITHUB_OUTPUT"
+            echo "static/harness is already current"
+          else
+            echo "dirty=true" >> "$GITHUB_OUTPUT"
+            git diff --stat -- static/harness
+          fi
+
+      # A fork's GITHUB_TOKEN is read-only, so there is nothing to push to and
+      # the honest outcome is a red check naming the command to run, rather
+      # than a green one over drawings that do not match their source.
+      - name: Fork PR cannot be updated in place
+        if: steps.changed.outputs.dirty == 'true' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          echo "::error::static/harness is out of date. Run ./scripts/build-harness.sh and commit the result."
+          exit 1
+
+      - name: Commit regenerated drawings
+        if: steps.changed.outputs.dirty == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add static/harness
+          git commit -m "Regenerate harness drawings from wireviz/"
+          git push origin HEAD:${{ github.event.pull_request.head.ref || github.ref_name }}
