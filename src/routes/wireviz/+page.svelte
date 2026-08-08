@@ -44,7 +44,7 @@
   <li><b>Quantity and target price</b> &mdash; cover sheet section 2. Expect MOQ pushback below ~50 pcs/type; the cover sheet frames the 2 sets as a paid sample run.</li>
   <li><b>Quality/test requirements</b>: IPC/WHMA-A-620 class, continuity, hipot &mdash; cover sheet says hobby grade, 100% continuity, no hipot, no UL cert.</li>
   <li><b>Label and packaging spec</b> &mdash; cover sheet section 6.</li>
-  <li><b>Photos or samples of mating hardware</b> for anything ambiguous (the StepperOnline lead, the board jacks) &mdash; the only thing not in the zip; send phone photos if asked.</li>
+  <li><b>Photos or samples of mating hardware</b> for anything ambiguous (the motor's 6-pin PH socket, the board jacks) &mdash; the only thing not in the zip; send phone photos if asked.</li>
 </ul>
 
 <h2>2 &nbsp; Drawings</h2>

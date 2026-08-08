@@ -30,7 +30,7 @@
 
 <h3>3.1 &nbsp; Stepper polarity</h3>
 <div class="note flag">
-  Source of truth is the basically board v1.3 pinout. Relative to how StepperOnline ships these motors, the inner two wires are flipped: shipped <code>1&middot;2&middot;3&middot;4</code> &rarr; basically board v1.3 order <code>1&middot;3&middot;2&middot;4</code>. Mark polarity on each of the 4 channel steppers. We did this because that is how the TMC drivers ship.
+  Source of truth is the basically board v1.3 pinout. The channel cable lands on the motor's <b>6-pin</b> JST-PH socket, so board pins <code>1&middot;2&middot;3&middot;4</code> go to motor pins <code>1&middot;4&middot;3&middot;6</code> and motor pins 2 and 5 stay empty. Nets match end to end; the positions do not, so it is not a straight-through cable. Check the coils with a multimeter before plugging a motor in.
 </div>
 <p class="meta">Full basically board v1.3 pinout (J23-J40), connector-to-connector mapping, and connector reference: <a href="/steppers">stepper connectors</a>.</p>
 <PinSwap />
@@ -81,7 +81,7 @@
   <thead><tr><th>ID</th><th>Segment</th><th>From</th><th>To</th><th>Cond.</th><th>Length</th></tr></thead>
   <tbody>
     <tr><td class="id">LIM</td><td>Limit switch</td><td>basically board v1.3, 2x1 dupont</td><td>Limit switch</td><td>2</td><td>24 in</td></tr>
-    <tr><td class="id">S1-4</td><td>Stepper, channels 1-4 (&times;4)</td><td>basically board v1.3, 4x1 dupont</td><td>Stepper (polarity: inner two flipped vs StepperOnline)</td><td>4</td><td>40 in</td></tr>
+    <tr><td class="id">S1-4</td><td>Stepper, channels 1-4 (&times;4)</td><td>basically board v1.3, 4x1 dupont</td><td>Stepper, JST-PH 6-pin (board 1&middot;2&middot;3&middot;4 &rarr; motor 1&middot;4&middot;3&middot;6)</td><td>4</td><td>1 m</td></tr>
     <tr><td class="id">CH</td><td>Chute stepper</td><td>basically board v1.3, 4x1 dupont</td><td>Chute stepper - flying leads, need prep</td><td>4</td><td>40 in</td></tr>
   </tbody>
 </table>

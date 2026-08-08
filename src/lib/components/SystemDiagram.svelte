@@ -95,7 +95,7 @@
         <text x="535" y="93">L2 &middot; 2x1 dupont &middot; 36+6 in</text>
         <text x="535" y="143">L3 &middot; 2x1 dupont &middot; 36+6 in</text>
         <text x="535" y="188">limit &middot; 2x1 dupont</text>
-        <text x="535" y="233">S1-4 &middot; 4x1 dupont &middot; 40 in</text>
+        <text x="535" y="233">S1-4 &middot; 4x1 dupont &middot; 1 m</text>
         <text x="535" y="283">CH &middot; 4x1 dupont &middot; flying leads</text>
         <text x="535" y="328">RIB &middot; 16-pin IDC &middot; 1 m</text>
       </g>
