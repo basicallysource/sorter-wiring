@@ -59,7 +59,15 @@ jobs:
       # bump rewrites all of them at once. Do that deliberately, not by drift.
       - run: pip install wireviz==0.4.1
 
-      - run: sudo apt-get update && sudo apt-get install -y graphviz
+      # Pinned for the same reason as WireViz, and it matters more here: the
+      # graphviz version IS part of the rendered output, so an unpinned bump
+      # silently rewrites every PNG, SVG and HTML at once. CI is the canonical
+      # renderer -- a local run on a different graphviz will produce different
+      # images, and this job will normalise them back on the next push.
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz=2.42.2-9ubuntu0.1
+          dot -V
 
       - run: ./scripts/build-harness.sh
 

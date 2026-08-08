@@ -13,16 +13,25 @@
 # Output is byte-for-byte reproducible, which is what lets CI commit only
 # when a drawing actually changed rather than on every run:
 #
-#   - dot's PDF writer stamps a creation time, so SOURCE_DATE_EPOCH below
-#     pins it. Without that the three PDFs differ on every single run and
-#     every run produces a commit.
+#   - dot's PDF writer stamps a creation time into a compressed object, so
+#     a PDF is only rebuilt when the .gv it comes from actually changed.
+#     SOURCE_DATE_EPOCH below pins the stamp on a graphviz new enough to
+#     honour it and is not sufficient on its own: graphviz 2.43, which is
+#     what Ubuntu 24.04 and therefore CI has, ignores it, and the resulting
+#     PDFs differed by one byte per run and committed on every run. The .gv
+#     is WireViz's own output and carries no timestamp, so it is the honest
+#     thing to key on.
 #   - zip stores mtimes, so the archive is built by Python with a fixed
-#     timestamp and a fixed member order instead of the zip(1) binary.
+#     timestamp and a fixed member order instead of the zip(1) binary. Its
+#     members are stable by the rule above, so it needs no guard of its own.
 #
-# The version of graphviz IS part of the output: a bump can shift glyph
-# positions and rewrite every PNG and SVG. That shows up as one large
-# rebaseline commit touching the images and nothing else, which is expected
-# and not a sign anything is wrong. WireViz itself is pinned in CI.
+# The version of graphviz IS part of the output: it shifts glyph positions,
+# so a different one rewrites every PNG, SVG and HTML at once. CI pins it
+# (2.42.2, Ubuntu 24.04's) and CI is the canonical renderer. Running this
+# locally on a newer graphviz is fine and useful for looking at a change,
+# but expect the images to come back different and expect CI to normalise
+# them on the next push. Only bump the pin in the workflow deliberately;
+# it lands as one rebaseline commit touching images and nothing else.
 
 set -euo pipefail
 
@@ -39,6 +48,17 @@ command -v dot     >/dev/null || { echo "build-harness: graphviz 'dot' not on PA
 
 mkdir -p "$OUT"
 
+# Keep the .gv files as they stand before anything overwrites them, so the PDF
+# step below can tell a real change from an identical re-render. A directory
+# and cmp rather than an associative array: macOS still ships bash 3.2, which
+# has no `declare -A`, and this script is meant to run on Spencer's Mac.
+PREV=$(mktemp -d)
+trap 'rm -rf "$PREV"' EXIT
+for gv in "$OUT"/*.gv; do
+  [ -e "$gv" ] || continue
+  cp "$gv" "$PREV"/
+done
+
 # ghpst = .gv, .html, .png, .svg, .bom.tsv
 wireviz "$SRC"/*.yml -f ghpst -o "$OUT"
 
@@ -47,7 +67,13 @@ wireviz "$SRC"/*.yml -f ghpst -o "$OUT"
 cp "$SRC"/*.yml "$OUT"/
 
 for gv in "$OUT"/*.gv; do
-  dot -Tpdf "$gv" -o "${gv%.gv}.pdf"
+  pdf="${gv%.gv}.pdf"
+  # Same drawing and a PDF already on disk: re-rendering would only move the
+  # embedded date, so leave it alone.
+  if [ -f "$pdf" ] && cmp -s "$gv" "$PREV/$(basename "$gv")"; then
+    continue
+  fi
+  dot -Tpdf "$gv" -o "$pdf"
 done
 
 # rfq.txt is written by hand and is an input here, not an output.
